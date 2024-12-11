@@ -30,9 +30,11 @@ const GuestForm = () => {
       }
 
       const timestamp = new Date().getTime().toString();
+      const attending = isAttending === "yes"
+
       await setDoc(doc(db, "guests", timestamp), {
         name,
-        isAttending,
+        isAttending: attending,
         guests: isAttending === "yes" ? parseInt(guests) : 0,
         phone,
       });
@@ -60,6 +62,7 @@ const GuestForm = () => {
     setPhone("");
     setFormSubmitted(false);
   };
+
 
   return (
     <div style={styles.container}>
